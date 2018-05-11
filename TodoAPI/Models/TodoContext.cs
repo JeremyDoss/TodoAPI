@@ -11,6 +11,13 @@ namespace TodoAPI.Models
         public TodoContext(DbContextOptions<TodoContext> options)
             : base(options)
         {
+            var optionsBuilder = new DbContextOptionsBuilder<TodoContext>();
+            optionsBuilder.UseSqlServer("Data Source=TodoDB.db");
+
+            using (var context = new TodoContext(optionsBuilder.Options))
+            {
+                // do stuff
+            }
         }
 
         public DbSet<TodoItem> TodoItems { get; set; }
