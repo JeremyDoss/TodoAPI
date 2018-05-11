@@ -9,7 +9,7 @@ namespace TodoAPI
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<TodoContext>(opt => opt.UseSqlServer("narkane.database.windows.net"));
+            services.AddDbContext<TodoContext>(opt => opt.UseInMemoryDatabase("TodoList"));
             services.AddMvc();
         }
 

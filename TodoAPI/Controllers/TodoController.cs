@@ -18,7 +18,7 @@ namespace TodoAPI.Controllers
 
             if (_context.TodoItems.Count() == 0)
             {
-                _context.TodoItems.Add(new TodoItem { name = "Item1" });
+                _context.TodoItems.Add(new TodoItem { Name = "Item1" });
                 _context.SaveChanges();
             }
         }
@@ -56,7 +56,7 @@ namespace TodoAPI.Controllers
             _context.TodoItems.Add(item);
             _context.SaveChanges();
 
-            return CreatedAtRoute("GetTodo", new { id = item.id }, item);
+            return CreatedAtRoute("GetTodo", new { id = item.Id }, item);
         }
         #endregion
 
@@ -64,7 +64,7 @@ namespace TodoAPI.Controllers
         [HttpPut("{id}")]
         public IActionResult Update(long id, [FromBody] TodoItem item)
         {
-            if (item == null || item.id != id)
+            if (item == null || item.Id != id)
             {
                 return BadRequest();
             }
@@ -75,8 +75,8 @@ namespace TodoAPI.Controllers
                 return NotFound();
             }
 
-            todo.isComplete = item.isComplete;
-            todo.name = item.name;
+            todo.IsComplete = item.IsComplete;
+            todo.Name = item.Name;
 
             _context.TodoItems.Update(todo);
             _context.SaveChanges();
